@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 创建svg 2.0 -->
+    <svg>
+      <rect x="0" y="0" width="100" height="100"></rect>
+    </svg>
+    <!-- JS 创建 SVG -->
+    <script>
+      //1. 创建 svg 和 rect 元素
+      let xmlns = 'http://www.w3.org/2000/svg';
+      let svgEl = document.createElementNS(xmlns, 'svg');
+      let rectEl = document.createElementNS(xmlns, 'rect');
+      //2.给svg 个 rect 元素添加属性
+      svgEl.setAttributeNS(null, 'version', '1.0');
+      svgEl.setAttributeNS(null, 'width', 100);
+      svgEl.setAttributeNS(null, 'height', 100);
+      rectEl.setAttributeNS(null, 'width', 50);
+      rectEl.setAttributeNS(null, 'height', 50);
+
+      //2. 给 svg 和 rect 元素对象添加属性
+
+      //3. 将svg添加到 body上
+      svgEl.appendChild(rectEl);
+      document.body.appendChild(svgEl);
+    </script>
+  </body>
+</html>

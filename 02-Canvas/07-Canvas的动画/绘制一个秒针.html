@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300" height="300px">
+      你的浏览器不兼容canvas, 请升级你的浏览器
+    </canvas>
+    <script>
+      window.onload = () => {
+        //拿到canvas对象
+        let canvasEl = document.getElementById('tutorial');
+        console.log('%O', canvasEl);
+        //拿到绘图的canvas上下文
+        if (!canvasEl.getContext) {
+          return;
+        }
+        //绘图上下文 , 拿到渲染山下问
+        // ctx: CanvasRenderingContext2D
+        //1. ctx 是一个绘图的上下文: 提供了绘图的指令, 可以绘制各种图形(圆形 直线 椭圆)
+        let ctx = canvasEl.getContext('2d'); //2d | webgl
+        let count = 0;
+        draw();
+        setInterval(() => {
+          draw();
+        }, 1000);
+        function draw() {
+          count++;
+          if (count >= 60) {
+            count = 0;
+          }
+          ctx.clearRect(0, 0, 300, 300);
+          ctx.save();
+          //绘制秒针
+          ctx.translate(100, 100);
+          ctx.rotate(((Math.PI * 2) / 60) * count);
+          //现款
+          ctx.lineWidth = 6;
+          ctx.lineCap = 'round';
+          ctx.strokeStyle = 'red';
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(0, -80);
+          ctx.stroke();
+
+          ctx.restore();
+        }
+      };
+    </script>
+  </body>
+</html>

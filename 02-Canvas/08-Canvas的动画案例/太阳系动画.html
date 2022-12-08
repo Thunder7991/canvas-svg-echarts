@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300" height="300px">
+      你的浏览器不兼容canvas, 请升级你的浏览器
+    </canvas>
+    <script>
+      window.onload = () => {
+        //拿到canvas对象
+        let canvasEl = document.getElementById('tutorial');
+        console.log('%O', canvasEl);
+        //拿到绘图的canvas上下文
+        if (!canvasEl.getContext) {
+          return;
+        }
+        //绘图上下文 , 拿到渲染山下问
+        // ctx: CanvasRenderingContext2D
+        //1. ctx 是一个绘图的上下文: 提供了绘图的指令, 可以绘制各种图形(圆形 直线 椭圆)
+        let ctx = canvasEl.getContext('2d'); //2d | webgl
+        let sun = new Image();
+        sun.src = '../images/canvas_sun.png';
+
+        let earth = new Image();
+        earth.src = '../images/canvas_earth.png';
+
+        let moon = new Image();
+        moon.src = '../images/canvas_moon.png';
+
+        requestAnimationFrame(draw);
+
+        //一秒钟会回调61次
+        function draw() {
+          ctx.clearRect(0, 0, 300, 200);
+          ctx.save();
+          //开始绘图
+          //绘制背景
+          drawBg();
+          //绘制地球
+          drawEarth();
+          ctx.restore();
+
+          requestAnimationFrame(draw);
+        }
+
+        function drawBg() {
+          ctx.save();
+          ctx.drawImage(sun, 0, 0); //绘制北京图片
+          ctx.translate(150, 150); //设置中心点,修改坐标系
+          ctx.strokeStyle = 'rgba(0,153,255,0.4)';
+          ctx.beginPath(); //绘制轨道
+          ctx.arc(0, 0, 105, 0, Math.PI * 2); //绘制圆形
+          ctx.stroke();
+          ctx.restore();
+        }
+        function drawEarth() {
+          let time = new Date();
+          let second = time.getSeconds();
+          let mill = time.getMilliseconds();
+          ctx.save();
+          ctx.translate(150, 150);
+          //注意找好坐标轴, 地球旋转
+          ctx.rotate(
+            ((Math.PI * 2) / 60) * second + ((Math.PI * 2) / 60 / 1000) * mill,
+          );
+          ctx.translate(105, 0);
+          ctx.drawImage(earth, -12, -12);
+
+          //绘制月球
+          //月球旋转
+
+          drawMoon(second, mill);
+
+          //此处是 105坐标系
+          //绘制蒙版
+
+          drawEarthMask();
+          ctx.restore(); //绘制地球结束
+        }
+        function drawMoon(second, mill) {
+          ctx.save();
+          ctx.rotate(
+            ((Math.PI * 2) / 10) * second + ((Math.PI * 2) / 10 / 1000) * mill,
+          );
+          ctx.translate(0, 28);
+          ctx.drawImage(moon, -3.5, -3.5);
+          ctx.restore();
+        }
+        function drawEarthMask() {
+          ctx.save();
+          ctx.fillStyle = 'rgba(0,0,0,0.4)';
+          ctx.fillRect(0, -12, 40, 24);
+          ctx.restore();
+        }
+      };
+    </script>
+  </body>
+</html>

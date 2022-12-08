@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-image: url(../images/grid.png);
+      }
+      svg {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M 0 100, L 100 30,L 200 100, L 300 30"
+        fill="transparent"
+        stroke="red"
+      ></path>
+    
+      <rect x="-10" y="-5" width="20" height="10" rx="3" ry="5" fill="red">
+        <animateMotion
+          path="M 0 100, L 100 30,L 200 100, L 300 30"
+          dur="5s"
+          repeatCount="indefinite"
+          rotate="auto"
+        ></animateMotion>
+      </rect>
+    </svg>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      canvas {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="tutorial" width="300" height="300px">
+      你的浏览器不兼容canvas, 请升级你的浏览器
+    </canvas>
+    <script>
+      window.onload = () => {
+        //拿到canvas对象
+        let canvasEl = document.getElementById('tutorial');
+        console.log('%O', canvasEl);
+        //拿到绘图的canvas上下文
+        if (!canvasEl.getContext) {
+          return;
+        }
+        //绘图上下文 , 拿到渲染山下问
+        // ctx: CanvasRenderingContext2D
+        //1. ctx 是一个绘图的上下文: 提供了绘图的指令, 可以绘制各种图形(圆形 直线 椭圆)
+        let ctx = canvasEl.getContext('2d'); //2d | webgl
+
+        ctx.fillStyle = 'red';
+        ctx.fillRect(10, 10, 30, 15);
+
+        ctx.fillStyle = 'green';
+        ctx.fillRect(50, 10, 30, 15);
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(90, 10, 30, 15);
+
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(90, 40, 30, 80);
+
+        ctx.fillStyle = 'green';
+        ctx.fillRect(50, 40, 30, 80);
+
+        ctx.fillStyle = 'red';
+        ctx.fillRect(10, 40, 30, 80);
+      };
+    </script>
+  </body>
+</html>

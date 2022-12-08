@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body,
+      ul {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-image: url(../images/grid.png);
+      }
+      svg {
+        background-color: rgba(255, 0, 0, 0.1);
+      }
+
+      text {
+        fill: red;
+      }
+    </style>
+  </head>
+  <body>
+    <svg width="300" height="300" xmlns="http://www.w3.org/2000/svg">
+        <!-- 绘制文字 -->
+      <!-- <text x="100" y="100" font-size="50" fill="green">CZ</text> -->
+      <!-- 文本对齐方式 类似flex-self -->
+      <!-- <text x="100" y="100" text-anchor="start" font-size="50" fill="green">CZ</text> -->
+
+      <!-- 基线对齐方式 -->
+      <text x="100" y="100" dominant-baseline="middle" font-size="50" fill="green">CZ</text>
+        
+      
+    </svg>
+  </body>
+</html>
